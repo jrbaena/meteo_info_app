@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meteo_info_app/dashboard/dashboard.dart';
+import 'package:meteo_info_app/injector.dart';
 
 void main() {
+  Injector.init();
   runApp(const MyApp());
 }
 
