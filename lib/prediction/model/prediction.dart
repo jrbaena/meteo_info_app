@@ -28,16 +28,18 @@ class Prediction {
 class Day {
   final SkyState skyState;
   final Temperature temperature;
+  final DateTime date;
 
-  Day({required this.skyState, required this.temperature});
+  Day({required this.skyState, required this.temperature, required this.date});
 
   factory Day.fromRawJson(String str) => Day.fromJson(json.decode(str));
 
   factory Day.fromJson(Map<String, dynamic> json) {
     final skyState = SkyState.fromJson(json["estadoCielo"][0]);
     final temperature = Temperature.fromJson(json["temperatura"]);
+    final date = DateTime.parse(json["fecha"]);
 
-    return Day(skyState: skyState, temperature: temperature);
+    return Day(skyState: skyState, temperature: temperature, date: date);
   }
 }
 

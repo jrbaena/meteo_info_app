@@ -9,6 +9,7 @@ class PredictionRepositoryImpl extends PredictionRepository {
 
   @override
   Future<Prediction> search(String locationCode) async {
+    //TODO Replace hardcoded api_key to credentials token
     final response = await http.get(
       Uri.parse("https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/$locationCode"),
       headers: <String, String>{

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meteo_info_app/prediction/bloc/prediction_cubit.dart';
+import 'package:meteo_info_app/prediction/model/Prediction.dart';
 import 'package:meteo_info_app/prediction/widgets/municipality_search_form_widget.dart';
 
 class PredictionPage extends StatelessWidget {
@@ -8,7 +9,6 @@ class PredictionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final PredictionCubit predictionCubit = BlocProvider.of(context);
 
     return GestureDetector(
@@ -37,17 +37,28 @@ class PredictionPage extends StatelessWidget {
               );
             }
             if (state is PredictionLoadedState) {
-              return ListView(
+              //TODO date format, avoid empty fields, convert to cards with standard size and style...
+              List<Widget> days = _getWidgetDays(state.prediction.days);
+
+              return Column(
                 children: [
-                  Text(
-                    "Predicción por municipios: ${state.municipalityName}",
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 20,
-                      color: Colors.black,
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 20.0),
+                    child: Text(
+                      "Predicción por municipios: ${state.municipalityName}",
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                        fontSize: 20,
+                        color: Colors.black,
+                      ),
                     ),
                   ),
+                  Expanded(
+                      child: ListView(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          children: days)),
                 ],
               );
             }
@@ -56,5 +67,28 @@ class PredictionPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  List<Widget> _getWidgetDays(List<Day> days) {
+    List<Widget> dayWidgets = [];
+    for (var element in days) {
+      dayWidgets.add(
+        Container(
+          margin:
+              element != days.first ? const EdgeInsets.only(left: 10.0) : null,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("${element.date.day}"),
+              const Text("Estado del cielo:"),
+              Text(element.skyState.description),
+              const Text("Tª (°C)"),
+              Text("${element.temperature.tMin} / ${element.temperature.tMax}"),
+            ],
+          ),
+        ),
+      );
+    }
+    return dayWidgets;
   }
 }
