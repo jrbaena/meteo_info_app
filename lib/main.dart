@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:meteo_info_app/dashboard/dashboard.dart';
 
-import 'municipalities/repository/Municipalities_repository_impl.dart';
+import 'municipalities/repository/municipalities_repository_impl.dart';
 
 void main() {
   runApp(const MyApp());

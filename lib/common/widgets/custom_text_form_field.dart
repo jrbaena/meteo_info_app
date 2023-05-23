@@ -34,7 +34,7 @@ class CustomTextFormField extends StatelessWidget {
   }
 
   String? _validate(String? value) {
-    if (value == null || value.isEmpty) {
+    if (value == null || value.trim().isEmpty) {
       return "El campo no puede estar vacío";
     }
     return null;

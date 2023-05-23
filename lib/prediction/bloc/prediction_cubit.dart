@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:meteo_info_app/extensions/string_extension.dart';
 
-import '../../municipalities/repository/Municipalities_repository_impl.dart';
+import '../../municipalities/repository/municipalities_repository_impl.dart';
 import '../model/Prediction.dart';
 import '../repository/prediction_repository.dart';
 
@@ -19,7 +19,7 @@ class PredictionCubit extends Cubit<PredictionState> {
       emit(PredictionLoadingState());
       final municipalityCode = await _getMunicipalityCode(municipalityName);
       final prediction = await _predictionRepository.search(municipalityCode);
-      emit(PredictionLoadedState(prediction));
+      emit(PredictionLoadedState(prediction, municipalityName));
     } catch (e) {
       debugPrint(e.toString());
       emit(PredictionErrorState());

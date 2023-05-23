@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meteo_info_app/prediction/bloc/prediction_cubit.dart';
-import 'package:meteo_info_app/prediction/widgets/custom_text_form_field.dart';
+import 'package:meteo_info_app/prediction/widgets/municipality_search_form_widget.dart';
 
 class PredictionPage extends StatelessWidget {
   const PredictionPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final TextEditingController textController = TextEditingController();
+
     final PredictionCubit predictionCubit = BlocProvider.of(context);
 
     return GestureDetector(
@@ -23,7 +23,7 @@ class PredictionPage extends StatelessWidget {
             if (state is PredictionErrorState) {
               return const Center(
                 child: Text(
-                  "Error al cargar los datos",
+                  "El nombre de la capital no se encuentra en el servicio o es incorrecto",
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w500,
@@ -37,33 +37,21 @@ class PredictionPage extends StatelessWidget {
               );
             }
             if (state is PredictionLoadedState) {
-              return Container(
-                color: Colors.purple,
-                height: 400,
-                width: 400,
-                child: Text(state.prediction.name),
-              );
-            }
-            return ListView(
-              children: [
-                const Text("Predicción por municipio: "),
-                CustomTextFormField(textController: textController),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: SizedBox(
-                    width: 150,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        predictionCubit.searchLocation(textController.text);
-                      },
-                      child: const Center(
-                        child: Text("Buscar"),
-                      ),
+              return ListView(
+                children: [
+                  Text(
+                    "Predicción por municipios: ${state.municipalityName}",
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                      color: Colors.black,
                     ),
                   ),
-                ),
-              ],
-            );
+                ],
+              );
+            }
+            return const MunicipalitySearchFormWidget();
           },
         ),
       ),

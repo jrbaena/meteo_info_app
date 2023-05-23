@@ -5,8 +5,9 @@ abstract class PredictionState {}
 
 class PredictionLoadedState extends PredictionState {
   final Prediction prediction;
+  final String municipalityName;
 
-  PredictionLoadedState(this.prediction);
+  PredictionLoadedState(this.prediction, this.municipalityName);
 
 }
 

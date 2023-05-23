@@ -32,6 +32,4 @@ class PredictionRepositoryImpl extends PredictionRepository {
       rethrow;
     }
   }
-
-
 }
