@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meteo_info_app/dashboard/dashboard.dart';
-import 'package:meteo_info_app/injector.dart';
+
+import 'municipalities/repository/Municipalities_repository_impl.dart';
 
 void main() {
-  Injector.init();
   runApp(const MyApp());
 }
 
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'MeteoFlutter',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -27,7 +27,22 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const Dashboard(),
+      home: FutureBuilder(
+          future: MunicipalitiesRepositoryImpl().fetch(),
+          builder: (context, snapshot){
+            if (snapshot.hasError) {
+              return Text("Error");
+            }
+            if (snapshot.hasData) {
+              return const Dashboard();
+            }
+              return Scaffold(
+                appBar: AppBar(title: Text("MeteoFlutter")),
+                body: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              );
+          },),
     );
   }
 }

@@ -29,8 +29,7 @@ class PredictionRepositoryImpl extends PredictionRepository {
 
       return Prediction.fromRawJson(response2.body);
     } catch (e) {
-      print(e);
-      throw Exception();
+      rethrow;
     }
   }
 

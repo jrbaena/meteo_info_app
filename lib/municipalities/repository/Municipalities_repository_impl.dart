@@ -10,11 +10,12 @@ class MunicipalitiesRepositoryImpl {
     try {
       final dio = Dio();
       final response = await dio.get(
-        "https://gist.githubusercontent.com/jrbaena/7466c60f362d518a8addf4df72b2b713/raw/f41a986c70173853b547d1efcf963c8afd0ee54e/municipalities.json",
+        "https://gist.githubusercontent.com/jrbaena/40a145974fdcc99b264f886c9882e228/raw/99b69a50d96d21c1fb585cc211eb7936455ce6eb/capitals.json",
         queryParameters: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
       );
+      debugPrint(response.data);
       for (var element in response.data) {
         try {
           municipalities?.add(Municipality.fromJson(element));

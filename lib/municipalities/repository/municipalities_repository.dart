@@ -1,5 +1,4 @@
-import '../model/municipality.dart';
 
-abstract class AllMunicipalitiesRepository {
-  Future<List<Municipality>>? fetch();
+abstract class MunicipalitiesRepository {
+  Future<void> fetch();
 }

@@ -1,4 +1,4 @@
-part of 'prediction_bloc.dart';
+part of 'prediction_cubit.dart';
 
 @immutable
 abstract class PredictionState {}
