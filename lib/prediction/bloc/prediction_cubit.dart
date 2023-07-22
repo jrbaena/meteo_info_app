@@ -14,6 +14,10 @@ class PredictionCubit extends Cubit<PredictionState> {
   PredictionCubit(this._predictionRepository)
       : super(PredictionInitialState());
 
+  void init() {
+    searchLocation("Madrid");
+  }
+
   void searchLocation(String municipalityName) async {
     try {
       emit(PredictionLoadingState());
@@ -35,5 +39,11 @@ class PredictionCubit extends Cubit<PredictionState> {
     } catch (e) {
       rethrow;
     }
+  }
+
+  Future<void> backToForm() async {
+    emit(PredictionLoadingState());
+    await Future.delayed(const Duration(milliseconds: 500));
+    emit(PredictionInitialState());
   }
 }
