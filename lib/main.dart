@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:meteo_info_app/dashboard/dashboard.dart';
 
 import 'municipalities/repository/municipalities_repository_impl.dart';
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    initializeDateFormatting('es');
     return MaterialApp(
       title: 'MeteoFlutter',
       theme: ThemeData(
