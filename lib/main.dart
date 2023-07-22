@@ -26,24 +26,27 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        fontFamily: 'Lora',
       ),
-      home: Scaffold(
-        appBar: AppBar(title: const Text("MeteoFlutter")),
-        body: FutureBuilder(
-          future: MunicipalitiesRepositoryImpl().fetch(),
-          builder: (context, snapshot) {
-            if (snapshot.hasError) {
-              return Text(snapshot.error?.toString() ?? "");
-            }
-            if (snapshot.hasData) {
-              MunicipalitiesRepositoryImpl.municipalities = snapshot.data ?? [];
-              return const Dashboard();
-            }
-            return const Center(
-              child: CircularProgressIndicator(),
+      home: FutureBuilder(
+        future: MunicipalitiesRepositoryImpl().fetch(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return Scaffold(
+              appBar: AppBar(
+                title: const Text("MeteoFlutter"),
+              ),
+              body: Text(snapshot.error?.toString() ?? ""),
             );
-          },
-        ),
+          }
+          if (snapshot.hasData) {
+            MunicipalitiesRepositoryImpl.municipalities = snapshot.data ?? [];
+            return const Dashboard();
+          }
+          return const Center(
+            child: CircularProgressIndicator(),
+          );
+        },
       ),
     );
   }
