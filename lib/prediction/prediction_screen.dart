@@ -9,11 +9,13 @@ class PredictionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //TODO Future navigation between screens?
-    return BlocProvider(
-      create: (context) => PredictionCubit(
-        RepositoryProvider.of(context),
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => PredictionCubit(
+          RepositoryProvider.of(context),
+        ),
+        child: const PredictionPage(),
       ),
-      child: const PredictionPage(),
     );
   }
 }
