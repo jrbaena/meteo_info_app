@@ -1,7 +1,4 @@
 import 'dart:convert';
-
-import 'package:meteo_info_app/prediction/model/Prediction.dart';
-import 'package:meteo_info_app/prediction/repository/prediction_repository.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/record.dart';

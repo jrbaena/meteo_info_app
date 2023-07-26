@@ -14,7 +14,7 @@ class Records {
       try {
         records.add(Record.fromJson(e));
       } catch (e) {
-        print(e);
+        rethrow;
       }
     });
 

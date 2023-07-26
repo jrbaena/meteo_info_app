@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:meteo_info_app/extensions/string_extension.dart';
 import 'package:meteo_info_app/prediction/bloc/prediction_cubit.dart';
 import 'package:meteo_info_app/prediction/model/Prediction.dart';
-import 'package:meteo_info_app/prediction/widgets/municipality_search_form_widget.dart';
 
 class PredictionPage extends StatelessWidget {
   const PredictionPage({super.key});
@@ -44,12 +43,12 @@ class PredictionPage extends StatelessWidget {
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                     colors: [
-                      Color(0xFFC782FC).withOpacity(0.8),
-                      Color(0xFF3366FF).withOpacity(0.8),
+                      const Color(0xFFC782FC).withOpacity(0.8),
+                      const Color(0xFF3366FF).withOpacity(0.8),
 
                     ],
-                    begin: FractionalOffset(0.5, 0.5),
-                    end: FractionalOffset(0.5, 1.0),
+                    begin: const FractionalOffset(0.5, 0.5),
+                    end: const FractionalOffset(0.5, 1.0),
                     tileMode: TileMode.clamp),
               ),
               child: Column(
