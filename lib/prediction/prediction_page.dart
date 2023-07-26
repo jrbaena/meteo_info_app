@@ -14,7 +14,6 @@ class PredictionPage extends StatelessWidget {
     final PredictionCubit predictionCubit = BlocProvider.of(context);
 
     predictionCubit.init();
-    final currentRecord = predictionCubit.currentWeather;
 
     return GestureDetector(
       onTap: () {
@@ -94,7 +93,7 @@ class PredictionPage extends StatelessWidget {
                                           const EdgeInsets.only(left: 20.0),
                                       child: Text(
                                         textAlign: TextAlign.center,
-                                        "${currentRecord?.temperature.round() ?? ""}º",
+                                        "${state.currentRecord?.temperature.round() ?? ""}º",
                                         style: const TextStyle(
                                           fontSize: 65,
                                           fontWeight: FontWeight.w400,

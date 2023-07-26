@@ -6,11 +6,21 @@ abstract class PredictionState {}
 class PredictionLoadedState extends PredictionState {
   final Prediction prediction;
   final String municipalityName;
+  final Record? currentRecord;
 
   PredictionLoadedState({
     required this.prediction,
     required this.municipalityName,
+    this.currentRecord,
   });
+
+  PredictionLoadedState copyWithRecord(Record record) {
+    return PredictionLoadedState(
+      prediction: prediction,
+      municipalityName: municipalityName,
+      currentRecord: record,
+    );
+  }
 }
 
 class PredictionInitialState extends PredictionState {}

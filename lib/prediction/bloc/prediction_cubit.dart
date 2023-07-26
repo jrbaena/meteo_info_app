@@ -17,14 +17,12 @@ class PredictionCubit extends Cubit<PredictionState> {
   PredictionCubit(this._predictionRepository, this._recordRepository)
       : super(PredictionInitialState());
 
-  Record? currentWeather;
-
   void init() async {
-    currentWeather = await getCurrentWeather("3195");
-    searchLocation("Madrid");
+    await searchLocation("Madrid");
+    await getCurrentWeather("3195");
   }
 
-  void searchLocation(String municipalityName) async {
+  Future<void> searchLocation(String municipalityName) async {
     try {
       emit(PredictionLoadingState());
       final municipalityCode = await _getMunicipalityCode(municipalityName);
@@ -60,10 +58,12 @@ class PredictionCubit extends Cubit<PredictionState> {
     emit(PredictionInitialState());
   }
 
-  Future<Record> getCurrentWeather(String idema) async {
+  Future<void> getCurrentWeather(String idema) async {
     try {
       final currentRecord = await _recordRepository.search(idema);
-      return currentRecord;
+      if (state is PredictionLoadedState) {
+        emit((state as PredictionLoadedState).copyWithRecord(currentRecord));
+      }
     } catch (e) {
       rethrow;
     }
