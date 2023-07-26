@@ -30,25 +30,24 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         fontFamily: 'Lora',
       ),
-      home: FutureBuilder(
-        future: MunicipalitiesRepositoryImpl().fetch(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return Scaffold(
-              appBar: AppBar(
-                title: const Text("MeteoFlutter"),
-              ),
-              body: Text(snapshot.error?.toString() ?? ""),
+      home: Scaffold(
+        body: FutureBuilder(
+          future: MunicipalitiesRepositoryImpl().fetch(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
+              return Center(
+                child: Text(snapshot.error?.toString() ?? ""),
+              );
+            }
+            if (snapshot.hasData) {
+              MunicipalitiesRepositoryImpl.municipalities = snapshot.data ?? [];
+              return const Dashboard();
+            }
+            return const Center(
+              child: CircularProgressIndicator(),
             );
-          }
-          if (snapshot.hasData) {
-            MunicipalitiesRepositoryImpl.municipalities = snapshot.data ?? [];
-            return const Dashboard();
-          }
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        },
+          },
+        ),
       ),
     );
   }

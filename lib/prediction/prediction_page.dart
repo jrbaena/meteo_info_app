@@ -35,11 +35,6 @@ class PredictionPage extends StatelessWidget {
               ),
             );
           }
-          if (state is PredictionLoadingState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
           if (state is PredictionLoadedState) {
             //TODO date format, avoid empty fields, convert to cards with standard size and style...
             final todayPrediction = state.prediction.days.first;
@@ -151,7 +146,9 @@ class PredictionPage extends StatelessWidget {
               ),
             );
           }
-          return const MunicipalitySearchFormWidget();
+          return const  Center(
+            child: CircularProgressIndicator(),
+          );
         },
       ),
     );
