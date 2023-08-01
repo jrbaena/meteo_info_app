@@ -40,17 +40,14 @@ class _MunicipalitySearchFormWidgetState
           CustomTextFormField(textController: textController),
           Align(
             alignment: Alignment.centerRight,
-            child: SizedBox(
-              width: 150,
-              child: ElevatedButton(
-                onPressed: () {
-                  if (_searchMunicipalityFormKey.currentState!.validate()) {
-                    predictionCubit.searchLocation(textController.text);
-                  }
-                },
-                child: const Center(
-                  child: Text("Buscar"),
-                ),
+            child: ElevatedButton(
+              onPressed: () {
+                if (_searchMunicipalityFormKey.currentState!.validate()) {
+                  predictionCubit.searchLocation(textController.text);
+                }
+              },
+              child: const Center(
+                child: Text("Buscar"),
               ),
             ),
           ),

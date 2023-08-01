@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:meteo_info_app/prediction/widgets/weather_header_widget.dart';
 
 import '../../current_record/model/record.dart';
 import '../model/Prediction.dart';
@@ -24,7 +25,7 @@ class CurrentRecordWidget extends StatelessWidget {
       clipper: DiagonalPathClipperOne(),
       child: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height / 1.85,
+        height: MediaQuery.of(context).size.height / 1.75,
         decoration: BoxDecoration(
           image: const DecorationImage(
             image: NetworkImage(
@@ -33,14 +34,15 @@ class CurrentRecordWidget extends StatelessWidget {
             fit: BoxFit.cover,
             opacity: 0.5,
           ),
-          color: Colors.amber.withOpacity(0.5),
+          color: Colors.amber.withOpacity(0.6),
         ),
         child: SafeArea(
           child: Center(
             child: Column(
               children: [
+                const WeatherHeaderWidget(),
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 20.0, top: 30.0),
+                  padding: const EdgeInsets.only(bottom: 20.0),
                   child: Text(
                     municipalityName,
                     textAlign: TextAlign.center,

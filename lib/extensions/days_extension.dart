@@ -58,7 +58,7 @@ extension DaysExtension on List<Day> {
 
     dayWidgets.add(
       Container(
-        margin: const EdgeInsets.only(left: 15.0, bottom: 45.0, right: 15.0),
+        margin: const EdgeInsets.only(left: 15.0, bottom: 35.0, right: 15.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
