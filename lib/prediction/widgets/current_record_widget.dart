@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:meteo_info_app/extensions/string_extension.dart';
 import 'package:meteo_info_app/prediction/widgets/weather_header_widget.dart';
 
 import '../../current_record/model/record.dart';
@@ -40,11 +41,11 @@ class CurrentRecordWidget extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                const WeatherHeaderWidget(),
+                WeatherHeaderWidget(),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Text(
-                    municipalityName,
+                    municipalityName.capitalize(),
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontWeight: FontWeight.w500,

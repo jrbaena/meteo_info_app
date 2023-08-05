@@ -26,19 +26,23 @@ class Municipalities {
 class Municipality {
   final String municipalityCode;
   final String name;
+  final String idema;
 
   Municipality({
     required this.municipalityCode,
     required this.name,
+    required this.idema,
   });
 
   factory Municipality.fromRawJson(String str) =>
       Municipality.fromJson(json.decode(str));
 
   factory Municipality.fromJson(Map<String, dynamic> json) {
-    final municipalityCode = json["CODE"];
-    final name = json["NOMBRE"];
+    final municipalityCode = json["code"];
+    final name = json["nombre"];
+    final idema = json["idema"];
 
-    return Municipality(municipalityCode: municipalityCode, name: name);
+    return Municipality(
+        municipalityCode: municipalityCode, name: name, idema: idema);
   }
 }

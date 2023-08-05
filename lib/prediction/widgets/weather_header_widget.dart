@@ -1,26 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:meteo_info_app/prediction/bloc/prediction_cubit.dart';
 
 import '../../common/widgets/custom_text_form_field.dart';
 
-class WeatherHeaderWidget extends StatefulWidget {
-  const WeatherHeaderWidget({super.key});
+class WeatherHeaderWidget extends StatelessWidget {
+  WeatherHeaderWidget({super.key});
 
-  @override
-  State<WeatherHeaderWidget> createState() => _WeatherHeaderWidgetState();
-}
-
-class _WeatherHeaderWidgetState extends State<WeatherHeaderWidget> {
-  late bool showTextForm;
   final TextEditingController textController = TextEditingController();
 
   @override
-  void initState() {
-    showTextForm = false;
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final PredictionCubit predictionCubit =
+        BlocProvider.of<PredictionCubit>(context);
     return Container(
       decoration: BoxDecoration(
         color: Colors.white.withOpacity(0.10),
@@ -40,23 +32,15 @@ class _WeatherHeaderWidgetState extends State<WeatherHeaderWidget> {
               ),
             ),
           ),
-          if (showTextForm) CustomTextFormField(textController: textController),
+          CustomTextFormField(
+            textController: textController,
+            onPressed: (String municipality) {
+              predictionCubit.searchLocation(municipality);
+            },
+          ),
           const SizedBox(
             width: 20,
           ),
-          IconButton(
-            color: Colors.green,
-            onPressed: () {
-              setState(() {
-                showTextForm = !showTextForm;
-              });
-            },
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
-              size: 25,
-            ),
-          )
         ],
       ),
     );

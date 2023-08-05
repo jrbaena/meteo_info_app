@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:meteo_info_app/extensions/string_extension.dart';
 
 class CustomTextFormField extends StatelessWidget {
   final TextEditingController textController;
+  final void Function(String) onPressed;
 
-  const CustomTextFormField({super.key, required this.textController});
+  const CustomTextFormField({super.key, required this.textController, required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 25,
-      width: 150,
+      width: 175,
       child: TextFormField(
         controller: textController,
         validator: _validate,
@@ -24,7 +26,18 @@ class CustomTextFormField extends StatelessWidget {
             borderSide: BorderSide(width: 1, color: Colors.red),
           ),
           hintText: "Escribe la capital",
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14)
+          hintStyle: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
+          suffixIcon: IconButton(
+            padding: const EdgeInsets.only(bottom: 10.0),
+            onPressed: () {
+              onPressed(textController.text.replaceSpecialCharacters().toLowerCase());
+            },
+            icon: const Icon(
+            Icons.search,
+            color: Colors.white,
+            size: 25,
+          ),
+          ),
         ),
         style: const TextStyle(
           fontSize: 14,

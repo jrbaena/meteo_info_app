@@ -49,19 +49,16 @@ class PredictionPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  CurrentRecordWidget(
+                    todayPrediction: todayPrediction,
+                    prediction: state.prediction,
+                    currentRecord: state.currentRecord,
+                    municipalityName: state.municipalityName,
+                  ),
                   Expanded(
-                    child: Stack(
-                      children: [
-                        CurrentRecordWidget(
-                          todayPrediction: todayPrediction,
-                          prediction: state.prediction,
-                          currentRecord: state.currentRecord,
-                          municipalityName: state.municipalityName,
-                        ),
-                        Align(
-                            alignment: Alignment.bottomCenter,
-                            child: ListView(shrinkWrap: true, children: days)),
-                      ],
+                    child: Align(
+                      alignment: Alignment.bottomCenter,
+                      child: ListView(shrinkWrap: true, children: days),
                     ),
                   ),
                 ],

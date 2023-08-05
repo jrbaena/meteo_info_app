@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../common/widgets/custom_text_form_field.dart';
 import '../bloc/prediction_cubit.dart';
 
 class MunicipalitySearchFormWidget extends StatefulWidget {
@@ -37,7 +36,6 @@ class _MunicipalitySearchFormWidgetState
       child: ListView(
         children: [
           const Text("Predicción por municipio: "),
-          CustomTextFormField(textController: textController),
           Align(
             alignment: Alignment.centerRight,
             child: ElevatedButton(

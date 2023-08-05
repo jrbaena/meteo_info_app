@@ -10,7 +10,7 @@ class MunicipalitiesRepositoryImpl {
     try {
       final dio = Dio();
       final response = await dio.get(
-        "https://gist.githubusercontent.com/jrbaena/40a145974fdcc99b264f886c9882e228/raw/09f42bcc186715e490894da7b1638cba91dd7636/capitals.json",
+        "https://gist.githubusercontent.com/jrbaena/40a145974fdcc99b264f886c9882e228/raw/1082f7167cbe830f2cdfe6b3e512c423003cb33a/capitals.json",
         queryParameters: <String, String>{
           'Content-Type': 'application/json; charset=UTF-8',
         },
