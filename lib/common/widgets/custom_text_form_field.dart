@@ -9,12 +9,12 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 25,
+      height: 30,
       width: 175,
       child: TextFormField(
         controller: textController,
         validator: _validate,
-        textAlignVertical: TextAlignVertical.top,
+        textAlignVertical: TextAlignVertical.bottom,
         decoration: InputDecoration(
           enabledBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.white),
@@ -28,7 +28,7 @@ class CustomTextFormField extends StatelessWidget {
           hintText: "Escribe la capital",
           hintStyle: TextStyle(color: Colors.white.withOpacity(0.5), fontSize: 14),
           suffixIcon: IconButton(
-            padding: const EdgeInsets.only(bottom: 10.0),
+            padding: const EdgeInsets.only(bottom: 10.0, left: 15),
             onPressed: () {
               onPressed(textController.text.replaceSpecialCharacters().toLowerCase());
             },

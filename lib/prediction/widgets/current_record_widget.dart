@@ -68,6 +68,7 @@ class CurrentRecordWidget extends StatelessWidget {
                 ),
                 Text(
                   prediction.days[1].skyState.description,
+                  textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 35,
                     fontWeight: FontWeight.w400,
